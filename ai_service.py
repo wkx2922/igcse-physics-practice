@@ -1,22 +1,17 @@
 import os
 import json
 import requests
-import os
 
 # DeepSeek API - 从环境变量读取
 API_KEY = os.environ.get("DEEPSEEK_API_KEY", "")
 API_URL = "https://api.deepseek.com/v1/chat/completions"
 
-# 本地调试日志文件
-LOG_FILE = os.dirname(__file__.path.join(os.path), "api_debug.log")
+# 禁用日志功能（部署到云端时不需要）
+LOG_FILE = None
 
 def log(msg):
     """写入日志到文件"""
-    try:
-        with open(LOG_FILE, "a") as f:
-            f.write(msg + "\n")
-    except:
-        pass
+    pass  # 云端部署时禁用日志
 
 
 def call_deepseek(prompt, retry=3):
